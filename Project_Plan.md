@@ -2,7 +2,7 @@
 
 ## 1. Project Structure
 ```
-membership-site/
+20250625_AUTHSITE_KODU/
 ├── client/                 # React frontend
 │   ├── src/
 │   │   ├── components/    # Reusable UI components
@@ -19,6 +19,20 @@ membership-site/
 │   │   ├── middleware/   # Custom middleware
 │   │   └── utils/        # Helper functions
 └── package.json
+```
+#### components
+```
+mkdir client\src\components ;
+mkdir client\src\pages ;
+mkdir client\src\services ;
+mkdir client\src\context ;
+mkdir client\src\hooks ;
+mkdir client\src\utils ;
+mkdir server\src\controllers ;
+mkdir server\src\models ;
+mkdir server\src\routes ;
+mkdir server\src\middleware ;
+mkdir server\src\utils
 ```
 
 ## 2. Component Breakdown
@@ -72,6 +86,7 @@ membership-site/
   googleId: String (optional),
   name: String,
   isAdmin: Boolean,
+  userLevel : String,
   createdAt: Date,
   updatedAt: Date
 }
@@ -95,12 +110,20 @@ membership-site/
 ### Phase 1: Initial Setup
 1. Create project structure
 2. Set up React with Vite
+   `npm create vite@latest ./client -- --template react`
+   `cd client ; npm install`
 3. Configure Tailwind CSS and Material UI
+   `cd client`
+   `npm install -D tailwindcss postcss autoprefixer` 
 4. Set up Express server
+   `cd server`
+   `npm init -y`
+   `npm install express mongoose dotenv cors`
 5. Set up MongoDB connection
 
 ### Phase 2: Authentication
 1. Implement Google OAuth
+   `npm install passport passport-google-oauth20 jsonwebtoken dotenv bcrypt cors`
 2. Create email registration
 3. Implement login system
 4. Set up JWT authentication
