@@ -1,5 +1,5 @@
 import express from 'express';
-import passport from '../utils/passport.js';
+import passport from 'passport';
 import { googleCallback, registerUser, loginUser, logoutUser } from '../controllers/authController.js';
 
 const router = express.Router();
