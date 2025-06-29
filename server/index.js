@@ -6,9 +6,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import passport from './src/utils/passport.js';
 import authRoutes from './src/routes/authRoutes.js';
-import { authMiddleware } from './src/middleware/authMiddleware.js';
-import User from './src/models/User.js'; // 導入User模型
-import './src/utils/db.js'; // 確保資料庫連接模塊被加載
+import userRoutes from './src/routes/userRoutes.js';
+// import './src/utils/db.js'; // This is likely redundant and can be removed
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,31 +24,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/auth', authRoutes);
-
-// Protected route example
-app.get('/api/users/me', authMiddleware, (req, res) => {
-  res.json({
-    _id: req.user._id,
-    email: req.user.email,
-    name: req.user.name,
-    isAdmin: req.user.isAdmin
-  });
-});
-
-// Admin protected route example
-app.get('/api/admin/users', authMiddleware, (req, res, next) => {
-  if (!req.user.isAdmin) {
-    return res.status(403).json({ message: 'Admin access required' });
-  }
-  next();
-}, async (req, res) => {
-  try {
-    const users = await User.find({}, '-password');
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to fetch users', error: error.message });
-  }
-});
+app.use('/api/users', userRoutes);
 
 // 異步連接數據庫並啟動服務器
 const startServer = async () => {
@@ -62,10 +37,7 @@ const startServer = async () => {
     }
 
     // 連接MongoDB
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(MONGODB_URI);
 
     console.log('✅ MongoDB connected successfully');
 

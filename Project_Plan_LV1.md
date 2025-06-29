@@ -1,7 +1,26 @@
-# Concept
-I will like to create a membership website
+### Step 1: Gather Project Information
+1. "What is your project name?" 
+>> 20250625_AuthSite_Kodu
+
+2. "Brief project description?"
+>> I will like to create a membership website
 But let's start by simple step.
 We build an authenticate signin and login system first
+
+3. "Project type?"
+   - Simple (basic scripts/utilities)
+   - Standard (full application)
+   - AI/ML (ML/data science project)
+   - Custom (user defines structure)
+>> Standard
+
+4. "Primary language?" (Python/JavaScript/TypeScript/Java/Other)
+>> JavaScript
+
+5. "Set up GitHub repository?" (Yes-New/Yes-Existing/No)
+>> Yes-Existing
+
+
 
 # UI
 1. While access the homepage, user will see a beautiful background with clean three button near center, which are "Login with Google", "Login by Email" and "Sign up".

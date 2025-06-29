@@ -1,40 +1,33 @@
 # Membership Website with Authentication System - Project Plan
 
 ## 1. Project Structure
-```
+```plaintext
 20250625_AUTHSITE_KODU/
-├── client/                 # React frontend
+├── client/    # React frontend (Not started)
 │   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/        # Page components
-│   │   ├── services/     # API services
-│   │   ├── context/      # React context
-│   │   ├── hooks/        # Custom hooks
-│   │   └── utils/        # Helper functions
-├── server/                # Node.js backend
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   └── utils/
+├── server/    # Node.js backend (Authentication complete)
 │   ├── src/
-│   │   ├── controllers/  # Route handlers
-│   │   ├── models/       # Database models
-│   │   ├── routes/       # API routes
-│   │   ├── middleware/   # Custom middleware
-│   │   └── utils/        # Helper functions
-└── package.json
+│   │   ├── controllers/
+│   │   │   └── authController.js
+│   │   ├── middleware/
+│   │   │   └── authMiddleware.js
+│   │   ├── models/
+│   │   │   └── User.js
+│   │   ├── routes/
+│   │   │   └── authRoutes.js
+│   │   └── utils/
+│   │       ├── passport.js
+│   │       └── tokenUtils.js
+│   ├── .env      # Environment variables (local)
+│   ├── index.js  # Main server entry point
+│   └── package.json
 ```
-#### components
-```
-mkdir client\src\components ;
-mkdir client\src\pages ;
-mkdir client\src\services ;
-mkdir client\src\context ;
-mkdir client\src\hooks ;
-mkdir client\src\utils ;
-mkdir server\src\controllers ;
-mkdir server\src\models ;
-mkdir server\src\routes ;
-mkdir server\src\middleware ;
-mkdir server\src\utils
-```
-
 ## 2. Component Breakdown
 
 ### Frontend Components

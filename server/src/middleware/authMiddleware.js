@@ -1,39 +1,31 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
-const authMiddleware = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization?.split(' ')[1];
+export const authMiddleware = async (req, res, next) => {
+  let token;
 
-    if (!token) {
-      return res.status(401).json({ message: 'Authorization token missing' });
-    }
+  // Check for token in Authorization header (e.g., "Bearer <token>")
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      // Extract token from the header
+      token = req.headers.authorization.split(' ')[1];
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.userId);
+      // Verify the token using the secret key
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (!user) {
-      return res.status(401).json({ message: 'User not found' });
-    }
+      // Find the user by the ID from the token payload
+      // Exclude the password field for security
+      req.user = await User.findById(decoded.userId).select('-password');
 
-    req.user = user;
-    next();
-  } catch (error) {
-    if (error.name === 'TokenExpiredError') {
-      return res.status(401).json({ message: 'Token expired' });
+      if (!req.user) {
+        return res.status(401).json({ message: 'Authorization failed, user not found.' });
+      }
+
+      return next(); // Proceed to the next middleware or route handler
+    } catch (error) {
+      return res.status(401).json({ message: 'Authorization failed, token is invalid.' });
     }
-    if (error.name === 'JsonWebTokenError') {
-      return res.status(401).json({ message: 'Invalid token' });
-    }
-    res.status(500).json({ message: 'Authentication failed', error: error.message });
   }
-};
 
-const adminMiddleware = (req, res, next) => {
-  if (!req.user || !req.user.isAdmin) {
-    return res.status(403).json({ message: 'Admin access required' });
-  }
-  next();
+  return res.status(401).json({ message: 'Authorization failed, no token provided.' });
 };
-
-export { authMiddleware, adminMiddleware };
