@@ -40,7 +40,7 @@ This guide outlines the major steps to create the server, focusing on the "what"
         *   `GOOGLE_CLIENT_ID`
         *   `GOOGLE_CLIENT_SECRET`
         *   `CLIENT_URL` (e.g., `http://localhost:3000`)
-
+    * we will get google API at [Google_API_Console](https://console.developers.google.com/?hl=zh-tw)
 2.  **Database Connection (`src/utils/db.js`)**:
     *   Create a file to handle the MongoDB connection logic. This isolates the database connection code, making it reusable and easy to manage.
 

@@ -1,0 +1,55 @@
+import axios from 'axios';
+
+const API_URL = '/api/users';
+
+/**
+ * Fetches all users from the server. Requires admin privileges.
+ * @param {string} token - The JWT token for authentication.
+ * @returns {Promise<Array>} A list of user objects.
+ */
+const getAllUsers = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(API_URL, config);
+  return response.data;
+};
+
+/**
+ * Updates the current user's profile data.
+ * @param {object} userData - The user data to update (e.g., { name }).
+ * @param {string} token - The JWT token for authentication.
+ * @returns {Promise<object>} The updated user object.
+ */
+const updateMe = async (userData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(`${API_URL}/me`, userData, config);
+  return response.data;
+};
+
+/**
+ * Uploads a new profile picture for the current user.
+ * @param {FormData} formData - The form data containing the image file.
+ * @param {string} token - The JWT token for authentication.
+ * @returns {Promise<object>} The updated user object.
+ */
+const uploadProfilePicture = async (formData, token) => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(`${API_URL}/me/picture`, formData, config);
+  return response.data;
+};
+
+const userService = { getAllUsers, updateMe, uploadProfilePicture };
+
+export default userService;
