@@ -50,6 +50,37 @@ const uploadProfilePicture = async (formData, token) => {
   return response.data;
 };
 
-const userService = { getAllUsers, updateMe, uploadProfilePicture };
+/**
+ * Updates a specific user's role. Requires admin privileges.
+ * @param {string} userId - The ID of the user to update.
+ * @param {string} role - The new role for the user.
+ * @param {string} token - The JWT token for authentication.
+ * @returns {Promise<object>} The updated user object.
+ */
+const updateUserRole = async (userId, role, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(`${API_URL}/${userId}/role`, { role }, config);
+  return response.data;
+};
 
+/**
+ * Deletes a specific user. Requires admin privileges.
+ * @param {string} userId - The ID of the user to delete.
+ * @param {string} token - The JWT token for authentication.
+ * @returns {Promise<void>}
+ */
+const deleteUser = async (userId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  await axios.delete(`${API_URL}/${userId}`, config);
+};
+
+const userService = { getAllUsers, updateMe, uploadProfilePicture, updateUserRole, deleteUser };
 export default userService;

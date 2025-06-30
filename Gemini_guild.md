@@ -10,11 +10,8 @@ I will always follow this sequential process for any development task:
     *   Before writing or modifying any code, I will first analyze the request and present a clear, step-by-step plan or architectural overview.
     *   This plan will outline the files to be created/modified and the reasoning behind the proposed changes.
 
-2.  **Await User Approval:**
-    *   I will **not** proceed with implementation until you explicitly approve the proposed plan. A simple "yes," "approved," or "continue" is sufficient.
-
 3.  **Execute the Approved Plan:**
-    *   Once the plan is approved, I will provide the necessary code modifications, file creations, or commands to implement it.
+    *   Once the plan is described , I will provide the necessary code modifications, file creations, or commands to implement it.
 
 ## Output and Modification Constraints
 
