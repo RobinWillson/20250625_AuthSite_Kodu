@@ -1,7 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import authService from '../services/authService';
-
-const AuthContext = createContext(null);
+import { AuthContext } from '../hooks/useAuth'; // Import context from its new single source
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -24,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     };
     verifyUserSession();
-  }, []); // Run only once on initial mount
+  }, []); // Run only once on initial mount to check for existing session
 
   const login = (userData, userToken) => {
     localStorage.setItem('token', userToken);
