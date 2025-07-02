@@ -1,17 +1,10 @@
 import express from 'express';
-import passport from 'passport';
-import { googleCallback, registerUser, loginUser, logoutUser } from '../controllers/authController.js';
+import { googleSignIn, registerUser, loginUser, logoutUser } from '../controllers/authController.js';
 
 const router = express.Router();
 
-// Google OAuth authentication
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-// Google OAuth callback
-router.get('/google/callback',
-  passport.authenticate('google', { session: false }),
-  googleCallback
-);
+// Google Sign-In (token-based from client)
+router.post('/google', googleSignIn);
 
 // Email registration
 router.post('/register', registerUser);
