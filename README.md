@@ -1,28 +1,21 @@
-# 20250625_AuthSite_Kodu
-This is a site template for register/login with email or google account.
+# 20250625 Authenticate Site Basic
+This is a site template for register/login with email or google account. You can start from this template to develop any kind of service.
 
-# Setting 
+# Building History
+This site is build by AI. Generally DeepSeek is good enough. Gemini is better and free.
 
-##### server > .env
-```
-# MongoDB Connection
-MONGODB_CONNECTION_STRING=`MongoDB Connection Code`
-PORT=5000
+1. Before we start ask for AI, be sure add [AI_Guild](./AI%20Prompt/Gemini_guild.md) for first prompt.
+2. Manually finish your project plan as [Project_Plan_LV1](./AI%20Prompt/Project_Plan_LV1.md)
+3. Ask AI with level-1 plan, then you will get [Project_Plan_LV2](./AI%20Prompt/Project_Plan_LV2.md)
+4. Ask AI with level-2 plan, then you can start building.
 
-# Google OAuth Credentials
-GOOGLE_CLIENT_ID=`Google OAuth 2.0 Client ID`
-GOOGLE_CLIENT_SECRET=`Google OAuth 2.0 Client Secret`
+# Server Building
+[server_structure](./server_structure_v01.md)
+[server_structure_TW](./server_structure_v01_zh-TW.md)
 
-# JWT Secret
-SESSION_SECRET=`Session Secret`
-JWT_SECRET=`JWT Secret`
+# Client Building
+[client_structure](./client_structure_v01.md)
+[client_structure_TW](./client_structure_v01_zh-TW.md)
 
-# Client URL (for redirects)
-CLIENT_URL=http://localhost:3000
-```
-
-##### Client > .env
-
-```
-VITE_GOOGLE_CLIENT_ID=`Google OAuth 2.0 Client ID`
-```
+# Validation Guide
+[Test_Plan](./Test_Plan/Test%20plan.md)

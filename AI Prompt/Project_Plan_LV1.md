@@ -28,7 +28,7 @@ We build an authenticate signin and login system first
 3. While SignUp button clicked, redirect to register page.
 4. While user sign in successfully, we show them a welcome page.
 5. I want to build an admin page. This page shows a list of user. And each user item has button at right, that admin can remove user.
-6. If Email or Google Account is "RobinHeck101@gmail.com", then it is admin.
+6. If Email or Google Account is "xxxx@gmail.com", then it is admin.
 
 # Building Requirement
 - nodejs
